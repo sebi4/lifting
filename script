@@ -1,0 +1,35 @@
+if game.PlaceId == 10385364649 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("Weight Lifting Champions😎😎", "Midnight")
+
+    -- Main
+    local FarmTab = Window:NewTab("Farm")
+    local FarmSection = FarmTab:NewSection("Farming")
+
+    FarmSection:NewToggle("Auto Lifting", "Auto lifting", function(state)
+        if state then
+            _G.loop = true
+            while _G.loop == true do wait()
+                print("Toggle on")
+    
+                game:GetService("ReplicatedStorage").Functions.LiftWeight:InvokeServer()
+            end
+        else
+            _G.loop = false
+            while _G.loop do wait()
+                print("Toggle off")
+    
+                game:GetService("ReplicatedStorage").Functions.LiftWeight:InvokeServer()
+            end
+        end
+    end)
+
+    local SellTab = Window:NewTab("Sell")
+    local SellSection = SellTab:NewSection("Sell Lifting")
+
+    SellSection:NewButton("Sell lifting", "Sell lifting", function()
+        print("Clicked")
+
+        game:GetService("ReplicatedStorage").Events.Sell:FireServer()
+    end)
+end
